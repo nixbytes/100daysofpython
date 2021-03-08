@@ -1,31 +1,36 @@
 cars = {
-    'Ford': ['Falcon', 'Focus', 'Festiva', 'Fairlane'],
-    'Holden': ['Commodore', 'Captiva', 'Barina', 'Trailblazer'],
-    'Nissan': ['Maxima', 'Pulsar', '350Z', 'Navara'],
-    'Honda': ['Civic', 'Accord', 'Odyssey', 'Jazz'],
-    'Jeep': ['Grand Cherokee', 'Cherokee', 'Trailhawk', 'Trackhawk']
+    "Ford": ["Falcon", "Focus", "Festiva", "Fairlane"],
+    "Holden": ["Commodore", "Captiva", "Barina", "Trailblazer"],
+    "Nissan": ["Maxima", "Pulsar", "350Z", "Navara"],
+    "Honda": ["Civic", "Accord", "Odyssey", "Jazz"],
+    "Jeep": ["Grand Cherokee", "Cherokee", "Trailhawk", "Trackhawk"],
 }
 
 
 def get_all_jeeps(cars=cars):
     """return a comma  + space (', ') separated string of jeep models
        (original order)"""
-    return ', '.join(cars['Jeep'])
+    return ", ".join(cars["Jeep"])
 
 
 def get_first_model_each_manufacturer(cars=cars):
     """return a list of matching models (original ordering)"""
-    pass
+    return [models[0] for models in cars.values()]
 
 
-def get_all_matching_models(cars=cars, grep='trail'):
+def get_all_matching_models(cars=cars, grep="trail"):
     """return a list of all models containing the case insensitive
        'grep' string which defaults to 'trail' for this exercise,
        sort the resulting sequence alphabetically"""
-    pass
+    grep_models = []
+    for models in cars.values():
+        for model in models:
+            if grep.lower() in model.lower():
+                grep_models.append(model)
+    return sorted(grep_models)
 
 
 def sort_car_models(cars=cars):
     """return a copy of the cars dict with the car models (values)
        sorted alphabetically"""
-    pass
+    return {manufactor: sorted(models) for manufactor, models in cars.items()}
